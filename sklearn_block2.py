@@ -41,3 +41,8 @@ x_train = pd.concat([x_train.drop(columns=["course"]), en_train], axis=1)
 x_test = pd.concat([x_test.drop(columns=["course"]), en_test], axis=1)
 print(x_train.columns)
 print(x_test.columns)
+new_courses = pd.DataFrame({
+    "course": [encoder.categories_[0][0], "Неизвестный курс"]
+})
+new_encoded = encoder.transform(new_courses)
+print(pd.DataFrame(new_encoded, columns=names, index=new_courses["course"]))
